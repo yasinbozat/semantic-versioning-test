@@ -1,0 +1,34 @@
+version: "3"
+
+vars:
+  SERVICES: "user-service order-service"
+
+tasks:
+  test:
+    desc: "Tüm servisleri test et"
+    cmds:
+      - for: { var: SERVICES }
+        cmd: cd services/{{.ITEM}} && go test ./... -v -count=1
+    dir: "{{.USER_WORKING_DIR}}"
+
+  lint:
+    desc: "Tüm servisleri vet et"
+    cmds:
+      - for: { var: SERVICES }
+        cmd: cd services/{{.ITEM}} && go vet ./...
+
+  build:
+    desc: "Tüm servisleri build et"
+    cmds:
+      - for: { var: SERVICES }
+        cmd: cd services/{{.ITEM}} && go build ./...
+
+  infra-up:
+    desc: "PostgreSQL, Redis, Kafka başlat"
+    cmds:
+      - docker compose up -d
+
+  infra-down:
+    desc: "Infra'yı durdur"
+    cmds:
+      - docker compose down

@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
+
+      - name: Test all services
+        shell: bash
+        run: |
+          for svc in services/*/; do
+            echo "Testing $svc"
+            cd $svc && go test ./... -v -count=1 && cd ../..
+          done

@@ -1,0 +1,4 @@
+{
+  "services/user-service": "0.0.0",
+  "services/order-service": "0.0.0"
+}

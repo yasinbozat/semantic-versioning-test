@@ -1,0 +1,12 @@
+{
+  "packages": {
+    "services/user-service": {
+      "release-type": "go",
+      "package-name": "user-service"
+    },
+    "services/order-service": {
+      "release-type": "go",
+      "package-name": "order-service"
+    }
+  }
+}
