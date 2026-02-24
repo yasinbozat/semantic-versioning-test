@@ -15,3 +15,10 @@ func TestDiscount(t *testing.T) {
 		t.Errorf("expected 80.0, got %f", result)
 	}
 }
+
+func TestMultiply(t *testing.T) {
+	result := Multiply(3, 4)
+	if result != 12 {
+		t.Errorf("expected 12, got %d", result)
+	}
+}
